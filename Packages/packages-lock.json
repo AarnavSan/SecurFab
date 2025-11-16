@@ -265,7 +265,7 @@
     },
     "com.unity.xr.legacyinputhelpers": {
       "version": "2.1.12",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.vr": "1.0.0",
@@ -285,8 +285,20 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.unity.xr.openxr": {
+      "version": "1.14.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.inputsystem": "1.6.3",
+        "com.unity.xr.core-utils": "2.3.0",
+        "com.unity.xr.management": "4.4.0",
+        "com.unity.xr.legacyinputhelpers": "2.1.2"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.xr.picoxr": {
-      "version": "https://github.com/Pico-Developer/PICO-Unity-Integration-SDK.git",
+      "version": "https://github.com/Pico-Developer/PICO-Unity-Integration-SDK.git#8a80917b64c17efd575eb5a77a70556e38976a9b",
       "depth": 0,
       "source": "git",
       "dependencies": {

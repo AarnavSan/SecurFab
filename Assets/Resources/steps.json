@@ -1,0 +1,59 @@
+{
+  "steps": [
+    {
+      "id": 0,
+      "title": "Step 1 – Verify Panel Is in Safe Idle State",
+      "body": "Confirm that all four zones are empty: No bottle, cup, scissors, or book inside any zone. Verbally state: 'Panel is in safe idle state. All supplies disconnected. No interlock key inserted.'",
+      "expected_config": {
+        "left": null,
+        "right": null,
+        "top": null,
+        "bottom": null
+      }
+    },
+    {
+      "id": 1,
+      "title": "Step 2 – Connect Chemical Supply A",
+      "body": "Pick up the bottle (Chemical Canister A). Place the bottle fully inside the LEFT zone labeled SUPPLY A. Ensure the bottle is clearly within the zone boundaries and no other objects are in the LEFT zone. Verbally state: 'Chemical Supply A connected at SUPPLY A.'",
+      "expected_config": {
+        "left": "bottle",
+        "right": null,
+        "top": null,
+        "bottom": null
+      }
+    },
+    {
+      "id": 2,
+      "title": "Step 3 – Connect Chemical Supply B",
+      "body": "Pick up the cup (Chemical Canister B). Place the cup fully inside the RIGHT zone labeled SUPPLY B. Ensure the cup is clearly within the RIGHT zone boundaries, bottle remains in LEFT zone, and no objects in TOP or BOTTOM zones. Verbally state: 'Chemical Supply B connected at SUPPLY B.'",
+      "expected_config": {
+        "left": "bottle",
+        "right": "cup",
+        "top": null,
+        "bottom": null
+      }
+    },
+    {
+      "id": 3,
+      "title": "Step 4 – Insert Interlock Key",
+      "body": "Pick up the scissors (Panel Interlock Key). Place the scissors fully inside the TOP zone labeled INTERLOCK. Ensure scissors are clearly within the TOP zone, bottle remains in LEFT zone, cup remains in RIGHT zone, and BOTTOM zone remains empty. Verbally state: 'Interlock key inserted. Panel is now unlocked for operation.'",
+      "expected_config": {
+        "left": "bottle",
+        "right": "cup",
+        "top": "scissors",
+        "bottom": null
+      }
+    },
+    {
+      "id": 4,
+      "title": "Step 5 – Complete Shift Logbook",
+      "body": "Pick up the book (Shift Logbook). Place the book fully inside the BOTTOM zone labeled LOGBOOK. Ensure book is clearly within the BOTTOM zone, bottle remains in LEFT zone, cup remains in RIGHT zone, and scissors remain in TOP zone. Verbally state: 'Startup checklist complete. Configuration logged and ready for operation.'",
+      "expected_config": {
+        "left": "bottle",
+        "right": "cup",
+        "top": "scissors",
+        "bottom": "book"
+      }
+    }
+  ]
+}
