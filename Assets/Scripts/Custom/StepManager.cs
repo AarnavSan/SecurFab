@@ -300,31 +300,35 @@ namespace SecureFab.Training
         /// </summary>
         /// <param name="detectedConfig">The configuration detected by SecureMR</param>
         /// <returns>True if the configuration matches expectations</returns>
-        public bool ValidateConfiguration(ExpectedConfig detectedConfig)
-        {
-            if (!_isInitialized || CurrentStep == null)
-            {
-                Debug.LogWarning("[StepManager] Cannot validate - not initialized or no current step.");
-                return false;
-            }
+// In StepManager.cs
+public bool ValidateConfiguration(ExpectedConfig detectedConfig)
+{
+    if (!_isInitialized || CurrentStep == null)
+    {
+        Debug.LogWarning("[StepManager] Cannot validate - not initialized or no current step.");
+        return false;
+    }
+    bool matches = CurrentStep.expected_config.Matches(detectedConfig);
 
-            bool matches = CurrentStep.expected_config.Matches(detectedConfig);
-            
-            Debug.Log($"[StepManager] Config validation: {(matches ? "PASS" : "FAIL")} - " +
-                      $"Expected: {CurrentStep.expected_config}, Detected: {detectedConfig}");
+    // Enhanced logging
+    SecureFabLogger.Log("StepManager", $"=== CONFIG VALIDATION ===");
+    SecureFabLogger.Log("StepManager", $"Step: {CurrentStep.id} - {CurrentStep.title}");
+    SecureFabLogger.LogConfig("StepManager-Expected", CurrentStep.expected_config);
+    SecureFabLogger.LogConfig("StepManager-Detected", detectedConfig);
+    SecureFabLogger.Log("StepManager", $"Result: {(matches ? "✓ PASS" : "✗ FAIL")}");
+    SecureFabLogger.Log("StepManager", "=====================");
 
-            onConfigurationValidated?.Invoke(matches);
+    onConfigurationValidated?.Invoke(matches);
 
-            // If auto-progress is enabled and config matches, start countdown
-            if (matches && enableAutoProgress && HasNextStep && !_waitingForAutoProgress)
-            {
-                _waitingForAutoProgress = true;
-                _autoProgressTimer = 0f;
-                Debug.Log($"[StepManager] Auto-progress will activate in {autoProgressDelay}s");
-            }
+    if (matches && enableAutoProgress && HasNextStep && !_waitingForAutoProgress)
+    {
+        _waitingForAutoProgress = true;
+        _autoProgressTimer = 0f;
+        SecureFabLogger.Log("StepManager", $"Auto-progress will activate in {autoProgressDelay}s");
+    }
 
-            return matches;
-        }
+    return matches;
+}
 
         /// <summary>
         /// Cancel pending auto-progress.
